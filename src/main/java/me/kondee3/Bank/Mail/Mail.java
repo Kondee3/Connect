@@ -1,6 +1,7 @@
 package me.kondee3.Bank.Mail;
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -20,7 +21,10 @@ public class Mail {
     private String receiverEmail;
     private LocalDate timeSent;
     private String title;
+
+    @Column(columnDefinition = "TEXT")
     private String content;
+
     public Mail(String senderEmail, String receiverEmail, LocalDate timeSent, String title, String content) {
         this.senderEmail = senderEmail;
         this.receiverEmail = receiverEmail;

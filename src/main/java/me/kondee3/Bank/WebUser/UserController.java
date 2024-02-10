@@ -1,14 +1,14 @@
 package me.kondee3.Bank.WebUser;
 
+import org.apache.juli.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
+//http://localhost:5173/api/v1/user/login/oauth2/code/google
 @RestController
-@RequestMapping(path = "api/v1")
 @CrossOrigin
+@RequestMapping(path = "api/v1")
+
 public class UserController {
 
     @Autowired
@@ -19,29 +19,13 @@ public class UserController {
     private final UserService userService;
 
 
-    @GetMapping("/user/login")
-    public List<WebUser> login(Model model) {
-//        List<ChatUser> chatUserList = chatUserService.getUsers();
-
-//        model.addAttribute("userName", chatUserList.get(0).getUserName());
-//        model.addAttribute("name", "Konrad");
-
-        return userService.getUsers();
+    @PostMapping("/user/login")
+    public HttpStatus login(@RequestBody LoginUser user) {
+        return  userService.loginUser(user);
     }
 
     @PostMapping("/user/register")
-    public void registerNewChatUser(@RequestBody WebUser user){
-        userService.addNewChatUser(user);
+    public HttpStatus registerNewChatUser(@RequestBody WebUser user){
+        return userService.addNewChatUser(user);
     }
-
-//    @DeleteMapping(path = "{chatUserId}")
-//    public void deleteChatUser(@PathVariable("chatUserId") Long chatUserId){
-//        userService.deleteChatUser(chatUserId);
-//    }
-
-//    @PutMapping(path = "{chatUserId}")
-//    public void updateChatUser(@PathVariable("chatUserId") Long chatUserId, @RequestParam(required = false) String userName, @RequestParam(required = false) String email){
-//        userService.updateChatUser(chatUserId, userName, email);
-//    }
-
 }

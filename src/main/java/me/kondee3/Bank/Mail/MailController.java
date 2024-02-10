@@ -1,9 +1,11 @@
 package me.kondee3.Bank.Mail;
 
+import me.kondee3.Bank.WebUser.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -19,31 +21,14 @@ public class MailController {
     private final MailService mailService;
 
 
-    @PostMapping("/user/getmails")
-    public List<Mail> getMails(@RequestBody String receiverEmail) {
-//        List<ChatUser> chatUserList = chatUserService.getUsers();
-
-//        model.addAttribute("userName", chatUserList.get(0).getUserName());
-//        model.addAttribute("name", "Konrad");
-
-
-            return mailService.getMails(receiverEmail).get();
-
+    @RequestMapping("/user/post/getmails")
+    public List<Mail> getMails(@RequestBody LoginUser user) {
+            return mailService.getMails(user.getEmail()).get();
     }
 
-    @PostMapping("/user/sendmail")
+    @PostMapping("/user/post/sendmail")
     public void registerNewChatUser(@RequestBody Mail mail){
         mailService.addMail(mail);
     }
-
-//    @DeleteMapping(path = "{chatUserId}")
-//    public void deleteChatUser(@PathVariable("chatUserId") Long chatUserId){
-//        userService.deleteChatUser(chatUserId);
-//    }
-
-//    @PutMapping(path = "{chatUserId}")
-//    public void updateChatUser(@PathVariable("chatUserId") Long chatUserId, @RequestParam(required = false) String userName, @RequestParam(required = false) String email){
-//        userService.updateChatUser(chatUserId, userName, email);
-//    }
 
 }

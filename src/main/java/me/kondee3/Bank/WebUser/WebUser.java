@@ -30,6 +30,10 @@ public class WebUser {
         this.dateofbirth = dateofbirth;
         this.password = password;
     }
+    public WebUser(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 
     public String getPassword() {
         return password;
@@ -73,6 +77,12 @@ public class WebUser {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "WebUser{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", dateofbirth=" + dateofbirth +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
