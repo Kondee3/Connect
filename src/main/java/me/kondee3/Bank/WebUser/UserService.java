@@ -19,9 +19,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-//    public List<WebUser> getUsers() {
-//        return userRepository.findAll();
-//    }
+
 
     public HttpStatus loginUser(LoginUser user) {
         Optional<WebUser> webUserOptional = userRepository.findWebUserByEmail(user.getEmail());

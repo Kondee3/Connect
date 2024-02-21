@@ -1,5 +1,6 @@
 package me.kondee3.Bank.WebUser;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +16,7 @@ public class UserConfig {
     CommandLineRunner commandLineRunner(UserRepository repository){
 
         return args -> {
+
             WebUser kondi = new WebUser(
                     "kondi",
                     "smyrakkonrad@gmail.com",
